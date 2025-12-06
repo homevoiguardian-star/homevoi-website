@@ -1,42 +1,33 @@
-/*
-Homevoi - Next.js Homepage (App Router)
-Place this file at:  /app/page.jsx
-
-Assumptions & quick setup:
-1) You created a Next.js app with the App Router and Tailwind enabled.
-   (e.g. `npx create-next-app@latest --experimental-app --tailwind homevoi-website`)
-2) This file uses Tailwind classes. Tailwind must be configured (default setup from the starter works).
-3) Optional libraries you can install for icons/components:
-   - lucide-react for icons: `npm i lucide-react`
-   - shadcn/ui components (optional)
-
-How to use:
-- Replace the default /app/page.jsx with this file's contents.
-- Start dev server: `npm run dev` and open http://localhost:3000
-
-What this file contains:
-- A complete, responsive homepage for Homevoi (hero, services, features, pricing, testimonials, contact CTA, footer)
-- Tailwind-first styling
-- Clear places marked with TODO to swap real copy, images, links
-*/
-
 'use client';
-
 import React from 'react';
-// Optional icon imports (install lucide-react to use)
-// import { Phone, MapPin, Home, Heart } from 'lucide-react';
 
-const ServiceCard = ({ title, desc, icon }) => (
+interface ServiceCardProps {
+  title: string;
+  desc: string;
+  icon?: React.ReactNode;
+}
+
+const ServiceCard: React.FC<ServiceCardProps> = ({ title, desc, icon }) => (
   <div className="bg-white/80 backdrop-blur-sm border border-gray-100 rounded-2xl p-6 shadow-sm">
     <div className="w-12 h-12 rounded-md bg-indigo-50 flex items-center justify-center mb-4">
-      {icon || <svg className="w-6 h-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V7M7 10l5 5 5-5" /></svg>}
+      {icon || (
+        <svg className="w-6 h-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V7M7 10l5 5 5-5" />
+        </svg>
+      )}
     </div>
     <h3 className="text-lg font-semibold text-slate-800">{title}</h3>
     <p className="mt-2 text-sm text-slate-600">{desc}</p>
   </div>
 );
 
-const Testimonial = ({ name, role, text }) => (
+interface TestimonialProps {
+  name: string;
+  role: string;
+  text: string;
+}
+
+const Testimonial: React.FC<TestimonialProps> = ({ name, role, text }) => (
   <div className="bg-white/90 border border-gray-100 p-5 rounded-xl shadow-sm">
     <p className="text-slate-700">“{text}”</p>
     <div className="mt-4 flex items-center">
@@ -49,7 +40,7 @@ const Testimonial = ({ name, role, text }) => (
   </div>
 );
 
-export default function Page() {
+export default function Page(): JSX.Element {
   return (
     <main className="min-h-screen bg-gradient-to-b from-slate-50 to-white text-slate-900">
       {/* NAVBAR */}
