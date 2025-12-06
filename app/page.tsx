@@ -12,7 +12,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { CheckCircle } from 'lucide-react';
 
 export default function HomevoiLanding() {
-  const [activeService, setActiveService] = useState(null);
+  const [activeService, setActiveService] = useState<'elderly' | 'property' | null>(null);
   const [showStartPlan, setShowStartPlan] = useState(false);
   const [formState, setFormState] = useState({ name: '', email: '', phone: '', service: '' });
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => { e.preventDefault(); console.log('Start plan submitted', formState); setShowStartPlan(false); alert('Thanks — we\'ll get back to you soon.'); }
