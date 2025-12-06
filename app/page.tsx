@@ -15,7 +15,7 @@ export default function HomevoiLanding() {
   const [activeService, setActiveService] = useState(null);
   const [showStartPlan, setShowStartPlan] = useState(false);
   const [formState, setFormState] = useState({ name: '', email: '', phone: '', service: '' });
-  const handleSubmit = (e) => { e.preventDefault(); console.log('Start plan submitted', formState); setShowStartPlan(false); alert('Thanks — we\'ll get back to you soon.'); }
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => { e.preventDefault(); console.log('Start plan submitted', formState); setShowStartPlan(false); alert('Thanks — we\'ll get back to you soon.'); }
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-slate-50 text-slate-900">
       {/* NAV */}
@@ -39,7 +39,7 @@ export default function HomevoiLanding() {
       {/* HERO */}
       <section className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
         <div>
-          <h2 className="text-4xl md:text-5xl font-extrabold leading-tight">Trusted home & elderly care in Kerala</h2>
+          <h2 className="text-4xl md:text-5xl font-extrabold leading-tight">Trusted home & elderly care in Kerala — for NRIs</h2>
           <p className="mt-4 text-lg text-slate-600">Homevoi manages your property and cares for your loved ones with local teams, tech-enabled updates, and subscription plans that give you peace of mind — from anywhere in the world.</p>
 
           <div className="mt-6 flex gap-4">
@@ -145,7 +145,7 @@ export default function HomevoiLanding() {
         <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="p-6 border rounded-2xl text-center">
             <div className="text-sm text-slate-500">Starter</div>
-            <div className="mt-2 text-3xl font-extrabold">₹4,999 / mo</div>
+            <div className="mt-2 text-3xl font-extrabold">₹1,999 / mo</div>
             <p className="text-slate-600 mt-2">Weekly home checks, monthly report, emergency response.</p>
             <div className="mt-4">
               <Button>Choose</Button>
@@ -154,7 +154,7 @@ export default function HomevoiLanding() {
 
           <div className="p-6 border-2 border-indigo-200 rounded-2xl text-center bg-white shadow-lg">
             <div className="text-sm text-slate-500">Essentials</div>
-            <div className="mt-2 text-3xl font-extrabold">₹9,999 / mo</div>
+            <div className="mt-2 text-3xl font-extrabold">₹3,999 / mo</div>
             <p className="text-slate-600 mt-2">Fortnightly checks, care visits, maintenance coordination.</p>
             <div className="mt-4">
               <Button>Choose</Button>
