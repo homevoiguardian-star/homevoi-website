@@ -1,4 +1,5 @@
-import React from 'react';
+"use client";
+import React, { useState } from 'react';
 
 // Homevoi single-file React component (Tailwind + shadcn/ui + lucide-react)
 // Usage: drop this component into a Next.js / Vite React page as the default export.
@@ -11,12 +12,16 @@ import { Textarea } from '@/components/ui/textarea';
 import { CheckCircle } from 'lucide-react';
 
 export default function HomevoiLanding() {
+  const [activeService, setActiveService] = useState(null);
+  const [showStartPlan, setShowStartPlan] = useState(false);
+  const [formState, setFormState] = useState({ name: '', email: '', phone: '', service: '' });
+  const handleSubmit = (e) => { e.preventDefault(); console.log('Start plan submitted', formState); setShowStartPlan(false); alert('Thanks — we\'ll get back to you soon.'); }
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-slate-50 text-slate-900">
       {/* NAV */}
       <header className="max-w-7xl mx-auto px-6 py-6 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-2xl bg-indigo-600 flex items-center justify-center text-white font-bold">HV</div>
+          <img src="/logo.png" alt="Homevoi Logo" className="h-12 w-auto" />
           <div>
             <h1 className="text-lg font-semibold">Homevoi</h1>
             <p className="text-xs text-slate-500">Your trusted presence back home</p>
@@ -34,11 +39,11 @@ export default function HomevoiLanding() {
       {/* HERO */}
       <section className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
         <div>
-          <h2 className="text-4xl md:text-5xl font-extrabold leading-tight">Trusted home & elderly care in Kerala — for NRIs</h2>
+          <h2 className="text-4xl md:text-5xl font-extrabold leading-tight">Trusted home & elderly care in Kerala</h2>
           <p className="mt-4 text-lg text-slate-600">Homevoi manages your property and cares for your loved ones with local teams, tech-enabled updates, and subscription plans that give you peace of mind — from anywhere in the world.</p>
 
           <div className="mt-6 flex gap-4">
-            <Button className="px-6 py-3">Start a Plan</Button>
+            <Button className="px-6 py-3" onClick={() => setShowStartPlan(true)}>Start a Plan</Button>
             <Button variant="ghost" className="px-6 py-3">Book a Visit</Button>
           </div>
 
@@ -96,14 +101,13 @@ export default function HomevoiLanding() {
           {[
             {title: 'Elderly Wellbeing', text: 'Companion visits, medication reminders, tele-consult setup.'},
             {title: 'Full Property Care', text: 'Regular inspections, maintenance coordination, vendor management.'},
-            {title: 'Tenant & Rent Management', text: 'Tenant screening, rent collection, property showings.'},
           ].map((s) => (
             <Card key={s.title} className="p-4">
               <CardContent>
                 <h4 className="text-lg font-semibold">{s.title}</h4>
                 <p className="text-slate-600 mt-2">{s.text}</p>
                 <div className="mt-4">
-                  <Button size="sm">Learn More</Button>
+                  <Button size="sm" onClick={() => setActiveService(s.title === 'Elderly Wellbeing' ? 'elderly' : 'property')}>Learn More</Button>
                 </div>
               </CardContent>
             </Card>
@@ -141,7 +145,7 @@ export default function HomevoiLanding() {
         <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="p-6 border rounded-2xl text-center">
             <div className="text-sm text-slate-500">Starter</div>
-            <div className="mt-2 text-3xl font-extrabold">₹1,999 / mo</div>
+            <div className="mt-2 text-3xl font-extrabold">₹4,999 / mo</div>
             <p className="text-slate-600 mt-2">Weekly home checks, monthly report, emergency response.</p>
             <div className="mt-4">
               <Button>Choose</Button>
@@ -150,7 +154,7 @@ export default function HomevoiLanding() {
 
           <div className="p-6 border-2 border-indigo-200 rounded-2xl text-center bg-white shadow-lg">
             <div className="text-sm text-slate-500">Essentials</div>
-            <div className="mt-2 text-3xl font-extrabold">₹3,999 / mo</div>
+            <div className="mt-2 text-3xl font-extrabold">₹9,999 / mo</div>
             <p className="text-slate-600 mt-2">Fortnightly checks, care visits, maintenance coordination.</p>
             <div className="mt-4">
               <Button>Choose</Button>
@@ -178,7 +182,7 @@ export default function HomevoiLanding() {
             <div className="mt-6 space-y-4">
               <div>
                 <div className="text-sm font-semibold">Email</div>
-                <div className="text-slate-600">hello@homevoi.com</div>
+                <div className="text-slate-600">guardian@homevoi.in</div>
               </div>
               <div>
                 <div className="text-sm font-semibold">Phone (India)</div>
@@ -208,10 +212,107 @@ export default function HomevoiLanding() {
       </section>
 
       {/* FOOTER */}
+      
+      {/* ELDERLY WELLBEING DETAIL MODAL */}
+      {activeService && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center">
+          <div className="absolute inset-0 bg-black/50" onClick={() => setActiveService(null)} />
+          <div className="relative max-w-3xl mx-4 bg-white rounded-2xl shadow-xl p-6">
+            <div className="flex justify-between items-start gap-4">
+              <div>
+                <h2 className="text-2xl font-bold">{activeService === 'elderly' ? 'Elderly Wellbeing' : 'Full Property Care'}</h2>
+                <p className="mt-2 text-slate-600">{activeService === 'elderly' ? 'Companion visits, medication reminders, tele-consult setup, and personalised support to keep your loved ones safe and connected.' : 'Regular property inspections, maintenance coordination, vendor management, and rent-ready services to keep your asset secure and revenue-generating.'}</p>
+              </div>
+              <div>
+                <button className="text-slate-500 hover:text-slate-700" onClick={() => setActiveService(null)}>Close ✕</button>
+              </div>
+            </div>
+
+            <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-6">
+              {activeService === 'elderly' ? (
+                <>
+                  <div>
+                    <h4 className="font-semibold">What we do</h4>
+                    <ul className="mt-2 list-disc list-inside text-slate-600 space-y-1">
+                      <li>Regular companion visits for conversation and daily check-ins.</li>
+                      <li>Medication reminders and basic health monitoring.</li>
+                      <li>Assist with errands, groceries, and bill collection.</li>
+                      <li>Set up tele-consults and coordinate with local healthcare providers.</li>
+                    </ul>
+                  </div>
+
+                  <div>
+                    <h4 className="font-semibold">Why families trust us</h4>
+                    <ul className="mt-2 list-disc list-inside text-slate-600 space-y-1">
+                      <li>Vetted local caregivers trained in compassionate assistance.</li>
+                      <li>Weekly photo & activity reports sent to you.</li>
+                      <li>Escalation support and 24/7 emergency contact.</li>
+                      <li>Transparent billing and receipts for all services.</li>
+                    </ul>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div>
+                    <h4 className="font-semibold">What we do</h4>
+                    <ul className="mt-2 list-disc list-inside text-slate-600 space-y-1">
+                      <li>Scheduled property inspections and condition reports.</li>
+                      <li>Coordinate repairs and manage trusted local vendors.</li>
+                      <li>Tenant coordination, rent collection support, and lease readiness.</li>
+                      <li>Secure the property and perform routine preventive maintenance.</li>
+                    </ul>
+                  </div>
+
+                  <div>
+                    <h4 className="font-semibold">Why owners trust us</h4>
+                    <ul className="mt-2 list-disc list-inside text-slate-600 space-y-1">
+                      <li>Experienced property managers with local vendor networks.</li>
+                      <li>Transparent invoicing and repair receipts.</li>
+                      <li>Faster turnaround for tenant issues and emergency repairs.</li>
+                      <li>Periodic walkthrough photos and maintenance logs.</li>
+                    </ul>
+                  </div>
+                </>
+              )}
+            </div>
+
+            <div className="mt-6 flex justify-end gap-3">
+              <Button onClick={() => { setShowStartPlan(true); setActiveService(null); }}>Start a Plan</Button>
+              <Button variant="ghost" onClick={() => setActiveService(null)}>Close</Button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* START PLAN MODAL */}
+      {showStartPlan && (
+        <div className="fixed inset-0 z-60 flex items-center justify-center">
+          <div className="absolute inset-0 bg-black/50" onClick={() => setShowStartPlan(false)} />
+          <form onSubmit={handleSubmit} className="relative max-w-xl mx-4 bg-white rounded-2xl shadow-xl p-6 w-full">
+            <h3 className="text-lg font-semibold">Start a Plan</h3>
+            <p className="text-slate-600 mt-1">Tell us who we\'re helping and how to contact you — we\'ll reach out to complete the details.</p>
+            <div className="mt-4 grid gap-3">
+              <Input placeholder="Your name" value={formState.name} onChange={(e) => setFormState({ ...formState, name: e.target.value })} />
+              <Input placeholder="Email" value={formState.email} onChange={(e) => setFormState({ ...formState, email: e.target.value })} />
+              <Input placeholder="Phone" value={formState.phone} onChange={(e) => setFormState({ ...formState, phone: e.target.value })} />
+              <select className="border rounded px-3 py-2" value={formState.service} onChange={(e) => setFormState({ ...formState, service: e.target.value })}>
+                <option value="">Select service</option>
+                <option value="elderly">Elderly Wellbeing</option>
+                <option value="property">Full Property Care</option>
+              </select>
+              <div className="flex justify-end gap-3 mt-4">
+                <Button type="submit">Submit</Button>
+                <Button variant="ghost" type="button" onClick={() => setShowStartPlan(false)}>Cancel</Button>
+              </div>
+            </div>
+          </form>
+        </div>
+      )}
+
       <footer className="max-w-7xl mx-auto px-6 py-8 text-slate-600">
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-indigo-600 text-white flex items-center justify-center">HV</div>
+            <img src="/logo.png" alt="Homevoi Logo" className="h-10 w-auto" />
             <div>
               <div className="font-semibold">Homevoi</div>
               <div className="text-xs">Trusted presence back home</div>
