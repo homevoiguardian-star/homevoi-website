@@ -40,7 +40,7 @@ const Testimonial: React.FC<TestimonialProps> = ({ name, role, text }) => (
   </div>
 );
 
-export default function Page(): JSX.Element {
+export default function Page(): React.ReactElement {
   return (
     <main className="min-h-screen bg-gradient-to-b from-slate-50 to-white text-slate-900">
       <header className="sticky top-0 z-20 backdrop-blur-sm bg-white/60 border-b border-gray-100">
