@@ -10,7 +10,7 @@ import { CheckCircle } from "lucide-react";
 export default function HomevoiLanding() {
   // Google Apps Script endpoints
   const START_PLAN_SCRIPT_URL =
-    "https://script.google.com/macros/s/AKfycbwxdz-ZDJlAj7UEDSwRi4p8eyYYboEZBf7Aj1Iq2BwkPYy4gzNBqciMTxKM_fuA3IUgVQ/exec";
+    "https://script.google.com/macros/s/AKfycbz5vyQ55nBM9yAAUixpAFd6OUutU0ZEtXWO9JXRv6bt7XkzEGYxfbsFy2TM-NXDLNJjnw/exec";
   const CONTACT_SCRIPT_URL =
     "https://script.google.com/macros/s/AKfycbzW1b7ztABVxH01uuFdUcMzLHqXGIMowDcn4gkH6oDSbUbM3iofPFosk5L13_9pW3dFxg/exec";
 
@@ -36,23 +36,16 @@ export default function HomevoiLanding() {
     }).toString();
 
     try {
-      const response = await fetch(START_PLAN_SCRIPT_URL, {
+      // Use no-cors so the browser doesn't block the response because of CORS.
+      // We don't need to read the response body, we just want the request to reach Apps Script.
+      await fetch(START_PLAN_SCRIPT_URL, {
         method: "POST",
+        mode: "no-cors",
         headers: {
           "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
         },
         body: payload,
       });
-
-      if (!response.ok) {
-        console.error(
-          "Error submitting start plan form",
-          response.status,
-          await response.text(),
-        );
-        alert("Something went wrong while submitting. Please try again.");
-        return;
-      }
 
       console.log("Start plan submitted", formState);
       setShowStartPlan(false);
@@ -60,7 +53,9 @@ export default function HomevoiLanding() {
       alert("Thanks — we'll get back to you soon.");
     } catch (error) {
       console.error("Network or server error (start plan)", error);
-      alert("Network error. Please check your connection and try again.");
+      alert(
+        "We couldn't confirm the booking due to a network error, but if this keeps happening please email guardian@homevoi.in.",
+      );
     }
   };
 
@@ -81,30 +76,23 @@ export default function HomevoiLanding() {
     }).toString();
 
     try {
-      const response = await fetch(CONTACT_SCRIPT_URL, {
+      // Same pattern: use no-cors, don't try to read the response.
+      await fetch(CONTACT_SCRIPT_URL, {
         method: "POST",
+        mode: "no-cors",
         headers: {
           "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
         },
         body: payload,
       });
 
-      if (!response.ok) {
-        console.error(
-          "Error submitting contact form",
-          response.status,
-          await response.text(),
-        );
-        alert("Something went wrong while sending your message. Please try again.");
-        return;
-      }
-
-      // Reset using saved form reference
       formEl.reset();
       alert("Thanks — your message has been sent.");
     } catch (error) {
       console.error("Network or server error (contact form)", error);
-      alert("Network error. Please check your connection and try again.");
+      alert(
+        "We couldn't confirm sending your message due to a network error. If this continues, please email guardian@homevoi.in.",
+      );
     }
   };
 
@@ -138,11 +126,11 @@ export default function HomevoiLanding() {
 
       {/* HERO - Full-width banner with illustration on the right */}
       <section className="w-full bg-[#E5F0FB] py-20">
-        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center gap-10">
+        <div className="max-w-7xl mx-auto px-6 flex flex-col-reverse md:flex-row items-center gap-10">
           {/* Left: Copy & CTA */}
           <div className="max-w-3xl md:flex-1">
             <h2 className="text-4xl md:text-6xl font-extrabold leading-tight text-slate-900">
-              Trusted home & elderly care in Kerala
+              Trusted Home Maintenance & Elderly Wellbeing Solutions
             </h2>
 
             <p className="mt-6 text-lg md:text-xl text-slate-700">
@@ -265,7 +253,7 @@ export default function HomevoiLanding() {
         <p className="text-slate-600 mt-2">Simple, transparent pricing — scale up as needed.</p>
 
         <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="p-6 border rounded-2xl text-center">
+          <div className="p-6 border-2 border-indigo-200 rounded-2xl text-center bg-white shadow-lg">
             <div className="text-sm text-slate-500">Starter</div>
             <div className="mt-2 text-3xl font-extrabold">₹4,999 / mo</div>
             <p className="text-slate-600 mt-2">
@@ -281,7 +269,7 @@ export default function HomevoiLanding() {
             </p>
           </div>
 
-          <div className="p-6 border rounded-2xl text-center">
+          <div className="p-6 border-2 border-indigo-200 rounded-2xl text-center bg-white shadow-lg">
             <div className="text-sm text-slate-500">Premium</div>
             <div className="mt-2 text-3xl font-extrabold">Custom</div>
             <p className="text-slate-600 mt-2">
@@ -319,7 +307,8 @@ export default function HomevoiLanding() {
               </div>
               <div>
                 <div className="text-sm font-semibold">Address</div>
-                <div className="text-slate-600">Kottayam, Kerala, India</div>
+                <div className="text-slate-600">Homevoi Services Pvt Ltd, R2, Centerspace,
+XIII/284 A, Annankunnu Road, Nagampadom, Kottayam, PIN:686001</div>
               </div>
             </div>
           </div>
