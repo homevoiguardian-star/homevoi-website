@@ -92,78 +92,114 @@ export default function HomevoiLanding() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-slate-50 text-slate-900">
-      {/* NAV */}
-      <header className="max-w-7xl mx-auto px-6 py-6 flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <img src="/logo.png" alt="Homevoi Logo" className="h-12 w-auto" />
-          <div>
-            <h1 className="text-lg font-semibold">Homevoi</h1>
-            <p className="text-xs text-slate-500">Your trusted presence back home</p>
+      {/* NAV – gold gradient ribbon */}
+      <header className="bg-gradient-to-r from-[#D4AF37] via-[#C89A1B] to-[#B38414] border-b border-[#8F6C10] shadow-md">
+        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+          <div className="flex items-center gap-3 text-white">
+            <div className="bg-white/10 rounded-2xl px-2 py-1 flex items-center">
+              <img
+                src="/logo.png"
+                alt="Homevoi Logo"
+                className="h-10 w-auto md:h-12 drop-shadow-md"
+              />
+            </div>
+            <div>
+              <h1 className="text-lg font-semibold leading-tight">Homevoi</h1>
+              <p className="text-xs text-yellow-50/90">Your trusted presence back home</p>
+            </div>
           </div>
+          <nav className="hidden sm:flex gap-6 items-center text-sm text-white font-medium">
+            <a
+              href="#services"
+              className="hover:text-[#FFF4CC] transition-colors"
+            >
+              Services
+            </a>
+            <a
+              href="#how"
+              className="hover:text-[#FFF4CC] transition-colors"
+            >
+              How it Works
+            </a>
+            <a
+              href="#pricing"
+              className="hover:text-[#FFF4CC] transition-colors"
+            >
+              Pricing
+            </a>
+            <a
+              href="#contact"
+              className="hover:text-[#FFF4CC] transition-colors"
+            >
+              Contact
+            </a>
+            <Button
+              className="bg-white text-slate-900 hover:bg-[#FFF4CC] hover:text-slate-900 transition-colors"
+              onClick={() => setShowStartPlan(true)}
+            >
+              Subscribe / Book
+            </Button>
+          </nav>
         </div>
-        <nav className="hidden sm:flex gap-6 items-center text-sm text-slate-700">
-          <a href="#services" className="hover:text-slate-900">
-            Services
-          </a>
-          <a href="#how" className="hover:text-slate-900">
-            How it Works
-          </a>
-          <a href="#pricing" className="hover:text-slate-900">
-            Pricing
-          </a>
-          <a href="#contact" className="hover:text-slate-900">
-            Contact
-          </a>
-          <Button onClick={() => setShowStartPlan(true)}>Subscribe / Book</Button>
-        </nav>
       </header>
 
-      {/* HERO */}
-      <section className="w-full bg-[#E7F3FF] py-20">
-        <div className="max-w-7xl mx-auto px-6 flex flex-col-reverse md:flex-row items-center gap-10">
+      {/* HERO – narrower blue band */}
+      <section className="w-full bg-[#E7F3FF] py-10 md:py-12">
+        <div className="max-w-7xl mx-auto px-6 flex flex-col-reverse md:flex-row items-center gap-8">
           {/* Left: Copy & CTA */}
           <div className="max-w-3xl md:flex-1">
-            <h2 className="text-4xl md:text-6xl font-extrabold leading-tight text-slate-900">
+            <h2 className="text-3xl md:text-5xl font-extrabold leading-tight text-slate-900">
               Keep your home and loved ones safe — from anywhere in the world
             </h2>
 
-            <p className="mt-6 text-lg md:text-xl text-slate-700">
+            <p className="mt-4 text-base md:text-lg text-slate-700">
               Homevoi provides monthly property inspections, compassionate wellbeing visits, and
               hands-on repair coordination — all delivered by vetted local teams and visible to you
               through timely photo reports and clear updates.
             </p>
 
-            <div className="mt-10 flex flex-wrap gap-4">
-              <Button className="px-8 py-4 text-base" onClick={() => setShowStartPlan(true)}>
+            <div className="mt-6 flex flex-wrap gap-4">
+              <Button className="px-8 py-3 text-sm md:text-base" onClick={() => setShowStartPlan(true)}>
                 Subscribe to Guardian Plan
               </Button>
-              <Button variant="ghost" className="px-8 py-4 text-base" onClick={() => alert('Call us at +917012069145')}>
+              <Button
+                variant="ghost"
+                className="px-8 py-3 text-sm md:text-base"
+                onClick={() => alert("Call us at +917012069145")}
+              >
                 Talk to Sales
               </Button>
             </div>
 
-            <div className="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-6 text-sm">
+            {/* benefits – kept but slightly tighter spacing */}
+            <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-6 text-sm">
               <div className="flex items-start gap-3">
-                <CheckCircle className="w-6 h-6 text-indigo-600" />
+                <CheckCircle className="w-5 h-5 text-indigo-600" />
                 <div>
                   <div className="font-semibold text-slate-900">Vetted local teams</div>
-                  <div className="text-slate-600">Background checks, training & uniformed identity</div>
+                  <div className="text-slate-600">
+                    Background checks, training & uniformed identity
+                  </div>
                 </div>
               </div>
 
               <div className="flex items-start gap-3">
-                <CheckCircle className="w-6 h-6 text-indigo-600" />
+                <CheckCircle className="w-5 h-5 text-indigo-600" />
                 <div>
                   <div className="font-semibold text-slate-900">Clear, photo-based reports</div>
-                  <div className="text-slate-600">See exactly what we saw — photos, notes, receipts</div>
+                  <div className="text-slate-600">
+                    See exactly what we saw — photos, notes, receipts
+                  </div>
                 </div>
               </div>
 
               <div className="flex items-start gap-3">
-                <CheckCircle className="w-6 h-6 text-indigo-600" />
+                <CheckCircle className="w-5 h-5 text-indigo-600" />
                 <div>
                   <div className="font-semibold text-slate-900">One flat subscription</div>
-                  <div className="text-slate-600">Set-and-forget peace of mind — no hidden fees</div>
+                  <div className="text-slate-600">
+                    Set-and-forget peace of mind — no hidden fees
+                  </div>
                 </div>
               </div>
             </div>
@@ -188,7 +224,7 @@ export default function HomevoiLanding() {
           people who live in it.
         </p>
 
-        <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
           {[
             {
               title: "Elderly Wellbeing",
@@ -201,12 +237,6 @@ export default function HomevoiLanding() {
               text:
                 "Scheduled inspections, preventive maintenance, vendor coordination, and photo documentation to keep your asset secure and market-ready.",
               key: "property",
-            },
-            {
-              title: "Repairs & Vendor Management",
-              text:
-                "We coordinate trusted electricians, plumbers and carpenters, provide quotes, and oversee work — you approve before we proceed.",
-              key: "repairs",
             },
           ].map((s) => (
             <Card key={s.title} className="p-4">
@@ -341,7 +371,9 @@ export default function HomevoiLanding() {
               </div>
               <div>
                 <div className="text-sm font-semibold">Office</div>
-                <div className="text-slate-600">Homevoi Services Pvt Ltd, R2, Centerspace, Annankunnu Road, Kottayam, Kerala</div>
+                <div className="text-slate-600">
+                  Homevoi Services Pvt Ltd, R2, Centerspace, Annankunnu Road, Kottayam, Kerala
+                </div>
               </div>
             </div>
           </div>
