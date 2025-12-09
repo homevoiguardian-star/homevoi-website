@@ -15,18 +15,21 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Homevoi - Your Trusted Presence Back Home",
   description: "Homevoi Services Pvt Ltd",
+  icons: {
+    icon: "/favicon.png",      // or .png/.svg
+    shortcut: "/favicon.png",
+    apple: "/favicon.png",     // optional
+  },
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         {children}
       </body>
     </html>
