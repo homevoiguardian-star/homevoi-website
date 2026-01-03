@@ -378,7 +378,7 @@ We stay present — so you can live peacefully, wherever you are.
               <div>
                 <div className="text-sm font-semibold">Office</div>
                 <div className="text-slate-600">
-                  Homevoi Services Pvt Ltd, R2, Centerspace, Annankunnu Road, Kottayam, Kerala
+                  Homevoi Services Pvt Ltd, R2, Centerspace Coworking, Annankunnu Road, Kottayam, Kerala - 686001
                 </div>
               </div>
             </div>
