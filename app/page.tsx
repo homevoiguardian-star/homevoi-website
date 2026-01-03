@@ -149,13 +149,13 @@ export default function HomevoiLanding() {
           {/* Left: Copy & CTA */}
           <div className="max-w-3xl md:flex-1">
             <h2 className="text-3xl md:text-5xl font-extrabold leading-tight text-slate-900">
-              Keep your home and loved ones safe — from anywhere in the world
+              When you are away, Homevoi stays.
             </h2>
 
             <p className="mt-4 text-base md:text-lg text-slate-700">
-              Homevoi provides monthly property inspections, compassionate wellbeing visits, and
-              hands-on repair coordination — all delivered by vetted local teams and visible to you
-              through timely photo reports and clear updates.
+              Living far away while your home and parents are still here? Homevoi has you covered. 
+              We stay present on your behalf—visiting, checking, caring, and sharing clear, honest updates 
+              so you always know everything is taken care of.
             </p>
 
             <div className="mt-6 flex flex-wrap gap-4">
@@ -220,25 +220,30 @@ export default function HomevoiLanding() {
       <section id="services" className="max-w-7xl mx-auto px-6 py-12">
         <h3 className="text-2xl font-bold">Our Services</h3>
         <p className="text-slate-600 mt-2">
-          Built for NRIs: essential, reliable services that protect both your property and the
-          people who live in it.
+          Living far away doesn’t mean being disconnected.
+With Homevoi, your home and your parents are never unattended.
+We stay present — so you can live peacefully, wherever you are.
         </p>
 
-        <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
-          {[
-            {
-              title: "Elderly Wellbeing",
-              text:
-                "Gentle, respectful companion visits focused on safety, medication reminders, and emotional connection. Non-medical; escalation protocols in place.",
-              key: "elderly",
-            },
-            {
-              title: "Full Property Care",
-              text:
-                "Scheduled inspections, preventive maintenance, vendor coordination, and photo documentation to keep your asset secure and market-ready.",
-              key: "property",
-            },
-          ].map((s) => (
+<div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+  {[
+    {
+      title: "Elderly Wellbeing",
+      text:
+        `Our elderly wellbeing visits focus on safety, comfort, and everyday support. We are not medical providers — but we ensure timely escalation and clear communication whenever attention is needed.
+
+You stay informed.
+Your parents feel supported.
+Nothing gets overlooked.`,
+      key: "elderly",
+    },
+    {
+      title: "Full Property Care",
+      text:
+        "An unattended home slowly develops problems — often unnoticed until they become expensive.\n\nWe conduct regular inspections, identify early issues, and coordinate repairs only after your approval. Whether your home is occupied or locked, it stays secure, maintained, and ready.",
+      key: "property",
+    },
+  ].map((s) => (
             <Card key={s.title} className="p-4">
               <CardContent>
                 <h4 className="text-lg font-semibold">{s.title}</h4>
@@ -263,7 +268,9 @@ export default function HomevoiLanding() {
       <section id="how" className="max-w-7xl mx-auto px-6 py-12 bg-slate-50">
         <h3 className="text-2xl font-bold">How Homevoi Works</h3>
         <p className="text-slate-600 mt-2">
-          We designed a simple, transparent process so you always know what’s happening at home.
+          Living far away doesn’t mean being disconnected.
+With Homevoi, your home and your parents are never unattended.
+We stay present — so you can live peacefully, wherever you are.
         </p>
         <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="p-6 bg-white rounded-2xl shadow">
@@ -278,16 +285,15 @@ export default function HomevoiLanding() {
             <div className="text-3xl font-bold">2</div>
             <h4 className="mt-3 font-semibold">Guardian assignment</h4>
             <p className="mt-2 text-slate-600">
-              A vetted, local Guardian is assigned to your property. You receive ID details and a
-              photo of the team.
+              A vetted, local Guardian is assigned to your property.
             </p>
           </div>
           <div className="p-6 bg-white rounded-2xl shadow">
             <div className="text-3xl font-bold">3</div>
-            <h4 className="mt-3 font-semibold">Monthly visits & instant updates</h4>
+            <h4 className="mt-3 font-semibold">Regular visits & instant updates</h4>
             <p className="mt-2 text-slate-600">
               After each visit you get a verified report with photos, notes, and recommended actions.
-              Repairs are executed only after your approval.
+              Actions are executed only after your approval.
             </p>
           </div>
         </div>
@@ -304,7 +310,7 @@ export default function HomevoiLanding() {
         <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="p-6 border-2 border-indigo-100 rounded-2xl text-center bg-white shadow-lg">
             <div className="text-sm text-slate-500">Starter</div>
-            <div className="mt-2 text-3xl font-extrabold">₹4,999 / mo</div>
+            <div className="mt-2 text-3xl font-extrabold">₹2,999 / mo</div>
             <p className="text-slate-600 mt-2">
               Monthly inspection, photo report, and escalation support. Ideal for regular oversight.
             </p>
@@ -315,9 +321,9 @@ export default function HomevoiLanding() {
 
           <div className="p-6 border-2 border-indigo-200 rounded-2xl text-center bg-white shadow-lg">
             <div className="text-sm text-slate-500">Essentials</div>
-            <div className="mt-2 text-3xl font-extrabold">₹9,999 / mo</div>
+            <div className="mt-2 text-3xl font-extrabold">₹4,999 / mo</div>
             <p className="text-slate-600 mt-2">
-              Fortnightly visits, wellbeing check-ins, and proactive vendor coordination.
+              Fortnightly visits, wellbeing check-ins, on-demand visits and endor coordination.
             </p>
             <div className="mt-4">
               <Button onClick={() => setShowStartPlan(true)}>Choose Essentials</Button>
@@ -328,7 +334,7 @@ export default function HomevoiLanding() {
             <div className="text-sm text-slate-500">Premium</div>
             <div className="mt-2 text-3xl font-extrabold">Custom</div>
             <p className="text-slate-600 mt-2">
-              Tailored programs with a dedicated account manager, scheduled vendor deliverables and
+              Tailored programs with a dedicated relationship manager, scheduled vendor deliverables and
               priority response.
             </p>
             <div className="mt-4">
